@@ -10,10 +10,10 @@ for(i=0;i<90;i++){
     run("Auto Threshold...", "method=Huang");
     setOption("BlackBackground", true);
         run("Convert to Mask");
-        run("Close-");
-run("Open");
+        run("Open");
+run("Close-");
 setAutoThreshold("Default dark");
-        saveAs("Tiff", "../Datasets/TrackingChallenge/Extracted-Gif/segmented//Huang5/"+fileTif);
+        saveAs("Tiff", "../Datasets/TrackingChallenge/Extracted-Gif/segmented//Huang6/"+fileTif);
     close();
     }
     

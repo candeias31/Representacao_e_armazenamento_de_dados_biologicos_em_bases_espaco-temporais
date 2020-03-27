@@ -2,7 +2,7 @@
  "cells": [
   {
    "cell_type": "code",
-   "execution_count": 1,
+   "execution_count": null,
    "metadata": {},
    "outputs": [],
    "source": [
@@ -19,7 +19,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 2,
+   "execution_count": null,
    "metadata": {},
    "outputs": [],
    "source": [
@@ -57,7 +57,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 3,
+   "execution_count": null,
    "metadata": {},
    "outputs": [],
    "source": [
@@ -92,9 +92,7 @@
     "        macro += \"\"\"setOption(\"BlackBackground\", true);\n",
     "        run(\"Convert to Mask\");\n",
     "        \"\"\";\n",
-    "    print macro\n",
     "    macro += str(returnType(treatment));\n",
-    "    print macro\n",
     "    if(changeBack):\n",
     "        macro += \"\"\"setAutoThreshold(\"Default dark\");\n",
     "        \"\"\";\n",
@@ -108,65 +106,6 @@
     "    f.close();\n",
     "    return macroPath;\n",
     "    "
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": null,
-   "metadata": {
-    "scrolled": true
-   },
-   "outputs": [
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "for(i=0;i<90;i++){\n",
-      "    if(i<10){\n",
-      "    fileTif = \"frame00\"+i+\".tif\";}\n",
-      "    else if(i<100){\n",
-      "    fileTif = \"frame0\"+i+\".tif\";}\n",
-      "    else{\n",
-      "    fileTif = \"frame\"+i+\".tif\";}\n",
-      "    open(\"../Datasets/TrackingChallenge/Extracted-Gif/dataset/\"+fileTif);\n",
-      "    run(\"8-bit\");\n",
-      "    run(\"Auto Threshold...\", \"method=Huang\");\n",
-      "    setOption(\"BlackBackground\", true);\n",
-      "        run(\"Convert to Mask\");\n",
-      "        \n",
-      "for(i=0;i<90;i++){\n",
-      "    if(i<10){\n",
-      "    fileTif = \"frame00\"+i+\".tif\";}\n",
-      "    else if(i<100){\n",
-      "    fileTif = \"frame0\"+i+\".tif\";}\n",
-      "    else{\n",
-      "    fileTif = \"frame\"+i+\".tif\";}\n",
-      "    open(\"../Datasets/TrackingChallenge/Extracted-Gif/dataset/\"+fileTif);\n",
-      "    run(\"8-bit\");\n",
-      "    run(\"Auto Threshold...\", \"method=Huang\");\n",
-      "    setOption(\"BlackBackground\", true);\n",
-      "        run(\"Convert to Mask\");\n",
-      "        run(\"Open\");\n",
-      "run(\"Close-\");\n",
-      "\n"
-     ]
-    }
-   ],
-   "source": [
-    "def main():\n",
-    "    src = \"..\\\\Datasets\\\\TrackingChallenge\\\\Extracted-Gif\\\\dataset\\\\\";\n",
-    "    dest = \"..\\\\Datasets\\\\TrackingChallenge\\\\Extracted-Gif\\\\segmented\\\\\";\n",
-    "    method = \"Huang\"\n",
-    "    treatment = 6;\n",
-    "    fileName = \"frame\"\n",
-    "    macroPath = createMacro(src,dest,method,treatment,fileName,True)\n",
-    "    imageJdir = \"C:\\Users\\cool_\\Documents\\ImageJ\\ImageJ.exe\";\n",
-    "\n",
-    "    cmd = 'cmd /c \\\"\"'+ imageJdir + '\" -macro \\\"' + macroPath + '\\\"\"';\n",
-    "\n",
-    "    os.system(cmd);\n",
-    "\n",
-    "main()"
    ]
   },
   {
@@ -190,6 +129,30 @@
     "\n",
     "src = \"..\\\\Datasets\\\\TrackingChallenge\\\\Extracted-Gif\\\\dataset\\\\\";\n",
     "renameImages(src,\"frame\")"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "scrolled": true
+   },
+   "outputs": [],
+   "source": [
+    "def main():\n",
+    "    src = \"..\\\\Datasets\\\\TrackingChallenge\\\\Extracted-Gif\\\\dataset\\\\\";\n",
+    "    dest = \"..\\\\Datasets\\\\TrackingChallenge\\\\Extracted-Gif\\\\segmented\\\\\";\n",
+    "    method = \"Huang\"\n",
+    "    treatment = 6;\n",
+    "    fileName = \"frame\"\n",
+    "    macroPath = createMacro(src,dest,method,treatment,fileName,True)\n",
+    "    imageJdir = \"C:\\Users\\cool_\\Documents\\ImageJ\\ImageJ.exe\";\n",
+    "\n",
+    "    cmd = 'cmd /c \\\"\"'+ imageJdir + '\" -macro \\\"' + macroPath + '\\\"\"';\n",
+    "\n",
+    "    os.system(cmd);\n",
+    "\n",
+    "main()"
    ]
   }
  ],
