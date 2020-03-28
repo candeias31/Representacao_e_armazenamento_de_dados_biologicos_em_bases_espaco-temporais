@@ -2,7 +2,7 @@
  "cells": [
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 1,
    "metadata": {},
    "outputs": [],
    "source": [
@@ -19,7 +19,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 2,
    "metadata": {},
    "outputs": [],
    "source": [
@@ -57,7 +57,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 40,
    "metadata": {},
    "outputs": [],
    "source": [
@@ -76,7 +76,7 @@
     "    source = src.replace(\"\\\\\",\"/\");\n",
     "    dirPath +=\"/\"\n",
     "    dirPath = dirPath.replace(\"\\\\\",\"/\");\n",
-    "    dirPath = dirPath.replace(\"\\0\",\"\\\\0\")\n",
+    "    #dirPath = dirPath.replace(\"\\0\",\"\\\\0\")\n",
     "    macro = \"\"\"for(i=0;i<{frames};i++){{\n",
     "    if(i<10){{\n",
     "    fileTif = \"{fileName}00\"+i+\".tif\";}}\n",
@@ -100,10 +100,11 @@
     "    close();\n",
     "    }}\n",
     "    \"\"\".format(frames=frames,fileName=fileName,source=source,destination=dirPath,method=method)\n",
-    "    macroPath = dirPath+\"\\\\macro.ijm\"\n",
+    "    macroPath = dirPath+\"macro.ijm\"\n",
     "    f = open(macroPath,'w');\n",
     "    f.write(macro);\n",
     "    f.close();\n",
+    "    macroPath = macroPath.replace(\"/\",\"\\\\\");\n",
     "    return macroPath;\n",
     "    "
    ]
@@ -127,33 +128,48 @@
     "        os.rename(src+file,src+name+\"{:03.0f}.tif\".format(i));\n",
     "        i +=1;\n",
     "\n",
-    "src = \"..\\\\Datasets\\\\TrackingChallenge\\\\Extracted-Gif\\\\dataset\\\\\";\n",
+    "src = \"..\\\\Datasets\\\\TrackingChallenge\\\\Fluo-N2DH-SIM+\\\\01_GT\\\\TRA\";\n",
     "renameImages(src,\"frame\")"
    ]
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 44,
    "metadata": {
     "scrolled": true
    },
-   "outputs": [],
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "cmd /c \"\"C:\\Users\\cool_\\Documents\\ImageJ\\ImageJ.exe\" -macro \"..\\Datasets\\TrackingChallenge\\Fluo-C2DL-MSC\\01_GT\\TRA\\segmented\\Mean0\\macro.ijm\"\"\n"
+     ]
+    }
+   ],
    "source": [
     "def main():\n",
-    "    src = \"..\\\\Datasets\\\\TrackingChallenge\\\\Extracted-Gif\\\\dataset\\\\\";\n",
-    "    dest = \"..\\\\Datasets\\\\TrackingChallenge\\\\Extracted-Gif\\\\segmented\\\\\";\n",
-    "    method = \"Huang\"\n",
-    "    treatment = 6;\n",
-    "    fileName = \"frame\"\n",
+    "    src = \"..\\\\Datasets\\\\TrackingChallenge\\\\Fluo-C2DL-MSC\\\\01_GT\\\\TRA\\\\\";\n",
+    "    dest = \"..\\\\Datasets\\\\TrackingChallenge\\\\Fluo-C2DL-MSC\\\\01_GT\\\\TRA\\\\segmented\";\n",
+    "    method = \"Mean\"\n",
+    "    treatment = 0;\n",
+    "    fileName = \"man_seg\"\n",
     "    macroPath = createMacro(src,dest,method,treatment,fileName,True)\n",
     "    imageJdir = \"C:\\Users\\cool_\\Documents\\ImageJ\\ImageJ.exe\";\n",
     "\n",
     "    cmd = 'cmd /c \\\"\"'+ imageJdir + '\" -macro \\\"' + macroPath + '\\\"\"';\n",
-    "\n",
+    "    print cmd\n",
     "    os.system(cmd);\n",
     "\n",
     "main()"
    ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
   }
  ],
  "metadata": {
