@@ -1,0 +1,8 @@
+----------Splitting Operations (Penalty=5)----------
+----------False Negative Vertices (Penalty=10)----------
+----------False Positive Vertices (Penalty=1)----------
+----------Redundant Edges To Be Deleted (Penalty=1)----------
+----------Edges To Be Added (Penalty=1.5)----------
+----------Edges with Wrong Semantics (Penalty=1)----------
+=================================================================================
+AOGM value: 0
